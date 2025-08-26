@@ -1,24 +1,97 @@
-:root { --fg:#111; --bg:#fff; --muted:#666; --line:#e5e5e5; }
+:root {
+  /* Brand tokens */
+  --fg: #111111;         /* 黒（本文/アクセント） */
+  --bg: #FFF7E8;         /* 薄いクリーム（ページ背景） */
+  --panel: #FFFFFF;      /* 白（カード/ヘッダー/フッター） */
+  --muted: #6B6B6B;      /* 補助テキスト */
+  --line: #E9DFC9;       /* 仕切り線（クリーム系） */
+
+  /* Effects */
+  --radius-card: 12px;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,.06);
+  --shadow-md: 0 8px 24px rgba(0,0,0,.08);
+}
+
 * { box-sizing: border-box; }
-body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans JP", sans-serif; color:var(--fg); background:var(--bg); }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans JP", sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+}
+
+/* Layout */
 .container { max-width:1080px; margin:0 auto; padding:16px; }
+header { background: var(--panel); border-bottom: 1px solid var(--line); }
 header h1 { margin:8px 0 0; font-size:24px; }
 .sub { color:var(--muted); margin:4px 0 16px; }
+
 .grid { display:grid; grid-template-columns: 1fr 320px; gap:24px; align-items:start; }
 @media (max-width:900px){ .grid{ grid-template-columns: 1fr; } }
+
 h2 { font-size:18px; margin:8px 0 12px; }
-.products { display:grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap:16px; }
-.card { border:1px solid var(--line); border-radius:12px; overflow:hidden; background:#fff; display:flex; flex-direction:column; }
-.card img { width:100%; height:180px; object-fit:cover; background:#f8f8f8; }
+
+/* Links & buttons */
+a { color: var(--fg); text-underline-offset: 2px; }
+
+button, select, input { font: inherit; }
+button {
+  cursor: pointer;
+  border: 1px solid var(--fg);
+  background: var(--fg);   /* Primary = 黒地 */
+  color: #fff;
+  padding: 9px 12px;
+  border-radius: 10px;
+  transition: transform .06s ease, filter .15s ease;
+}
+button:hover { filter: brightness(0.92); }
+button:active { transform: translateY(1px); }
+button.secondary {
+  background: transparent; color: var(--fg);
+}
+button.secondary:hover { background: rgba(17,17,17,0.06); }
+
+/* Cards & lists */
+.products {
+  display:grid;
+  grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+  gap:16px;
+}
+.card {
+  border:1px solid var(--line);
+  border-radius: var(--radius-card);
+  overflow:hidden;
+  background: var(--panel);
+  display:flex; flex-direction:column;
+  box-shadow: var(--shadow-sm);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.card img { width:100%; height:180px; object-fit:cover; background:#FAF3DE; }
 .card .body { padding:12px; display:flex; flex-direction:column; gap:8px; }
 .title { font-weight:600; line-height:1.3; }
 .muted { color:var(--muted); font-size:12px; }
 .row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
-select, button, input { font:inherit; }
-button { cursor:pointer; border:1px solid var(--line); background:#fff; padding:8px 10px; border-radius:10px; }
-button:hover { background:#fafafa; }
-aside { position:sticky; top:12px; border:1px solid var(--line); border-radius:12px; padding:12px; background:#fff; }
-.cart-item { display:grid; grid-template-columns: 1fr auto; gap:8px; padding:8px 0; border-bottom:1px dashed var(--line); }
+input.qty { width:72px; }
+
+/* Cart */
+aside {
+  position:sticky; top:12px;
+  border:1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding:12px;
+  background: var(--panel);
+  box-shadow: var(--shadow-sm);
+}
+.cart-item {
+  display:grid; grid-template-columns: 1fr auto; gap:8px;
+  padding:8px 0; border-bottom:1px dashed var(--line);
+}
 .cart-summary { display:flex; flex-direction:column; gap:8px; padding-top:8px; }
-.foot { color:var(--muted); text-align:center; }
-.note { color:var(--muted); font-size:12px; }
+
+/* Footer */
+.foot { color:var(--muted); text-align:center; background: var(--panel); border-top:1px solid var(--line); }
+
+/* Focus visibility */
+:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
