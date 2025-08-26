@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>New St. | Online Store (MVP)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>New St. Online Store (MVP)</h1>
+    <p class="sub">受注生産・ゼロコストMVP。まずはここから。</p>
+  </header>
+
+  <main class="container grid">
+    <section>
+      <h2>Catalog</h2>
+      <div id="product-list" class="products"></div>
+    </section>
+
+    <aside>
+      <h2>Cart</h2>
+      <div id="cart"></div>
+      <div class="cart-summary">
+        <div>小計: <span id="subtotal">¥0</span></div>
+        <button id="checkout-btn">注文フォームへ</button>
+        <p class="note">※ 決済はフォーム送信後に個別案内（銀行振込/Pay等）。後でStripeに切替可能。</p>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="container foot">
+    <small>© 2025 New St. / MVP Build</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
